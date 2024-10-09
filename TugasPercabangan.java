@@ -1,85 +1,67 @@
 import java.util.Scanner;
 
 public class TugasPercabangan {
-
     public static void main(String[] args) {
-        // Membuat scanner untuk input dari user
+
+        int GAJI_POKOK = 5000000;
+        int UANG_LEMBUR_PER_JAM = 50000;
+        int masaKerja, jamKerja, jamLembur;
+        double tambahan, totalGaji;
+
         Scanner scanner = new Scanner(System.in);
 
-        // Deklarasi variabel
-        int masaKerja, totalJamKerja;
-        double gajiPokok = 5000000, gajiAkhir, tambahanGaji = 0, uangLembur = 0;
-        int jamKerjaPerHari = 8;  // Jam kerja normal per hari
-        int jamKerjaPerMinggu = 40;  // Jam kerja normal per minggu
-        int uangLemburPerJam = 50000;  // Uang lembur per jam
-
-        // Input masa kerja dan jumlah jam kerja dari user
         System.out.print("Masukkan masa kerja (dalam tahun): ");
         masaKerja = scanner.nextInt();
+        System.out.print("Masukkan jumlah jam kerja dalam 1 bulan: ");
+        jamKerja = scanner.nextInt();
 
-        System.out.print("Masukkan total jam kerja dalam 1 bulan: ");
-        totalJamKerja = scanner.nextInt();
-
-        // Hitung tambahan gaji berdasarkan masa kerja
-        if (masaKerja >= 5 && masaKerja <= 10) {
-            tambahanGaji = 0.05 * gajiPokok;  // Tambahan 5% jika masa kerja antara 5-10 tahun
-        } else if (masaKerja > 10) {
-            tambahanGaji = 0.10 * gajiPokok;  // Tambahan 10% jika masa kerja di atas 10 tahun
+        if (jamKerja > 40) { // 240 jam = 8 jam/hari * 30 hari
+            jamLembur = jamKerja - 40;
+        } else {
+            jamLembur = 0;
         }
 
-        // Hitung jumlah jam lembur dalam 1 bulan 
-        int jamNormalSebulan = jamKerjaPerMinggu * 4;  // 40 jam kerja per minggu x 4 minggu
-        int jamLembur = totalJamKerja - jamNormalSebulan;
-
-        // Hitung uang lembur
-        if (jamLembur > 0) {
-            uangLembur = jamLembur * uangLemburPerJam;
+        if (masaKerja < 5) {
+            tambahan = 0;
+        } else if (masaKerja >= 5 && masaKerja <= 10) {
+            tambahan = GAJI_POKOK * 0.05; // Tambahan 5%
+        } else {
+            tambahan = GAJI_POKOK * 0.10; // Tambahan 10%
         }
 
-        // Hitung gaji akhir
-        gajiAkhir = gajiPokok + tambahanGaji + uangLembur;
+        totalGaji = GAJI_POKOK + tambahan + (jamLembur * UANG_LEMBUR_PER_JAM);
 
-        // Tampilkan hasil perhitungan
-        System.out.println("Gaji pokok: Rp " + gajiPokok);
-        System.out.println("Tambahan gaji: Rp " + tambahanGaji);
-        System.out.println("Uang lembur: Rp " + uangLembur);
-        System.out.println("Gaji total yang diterima: Rp " + gajiAkhir);
-        
+        // Tampilkan hasil
+        System.out.println("\n--- Hasil Perhitungan Gaji ---");
+        System.out.println("Gaji_Pokok: Rp " + GAJI_POKOK);
+        System.out.println("tambahan: Rp " + tambahan);
+        System.out.println("UANG_LEMBUR_PER_JAM: Rp " + UANG_LEMBUR_PER_JAM);
+        System.out.println("totalgaji: Rp " + totalGaji);
+
         scanner.close();
     }
 }
 
-//pseudocode
+// Deklarasi
+// Var gajiPokok = 5000000;
+// uangLembur = 50000;
+// masaKerja;
+// jamKerja;
+// jumlahJamKerja;
+// jumlahJamLembur;
+// : integer;
+// totalGaji;
+// bonus;
+// : double;
 
-//deklarasi
+// Algoritma
+// input(masaKerja);
+// input(jamKerja);
+// if (masa kerja <5 tahun) then
+// output (bonus = 0);
+// else if (masa kerja>= 5 && masaKerja <= 10 ) then
+// output (bonus = 0,05 *uangLembur);
+// else(masa kerja > 10 tahun) then
+// output (bonus = 0,01)
 
-    var masa_kerja, jumlah_jam_kerja, gaji_pokok, uang_lembur_per_jam, total_jam_kerja, uang_lembur, tambahan, total_gaji integer;
-//algoritma
-
-    int masa_kerja = (input)
-    int jumlah_jam_kerja = (input)
-
-    if gaji_pokok = (total_jam_kerja * jumlah_jam_kerja):
-    endif 
-
-    if uang_lembur = (total_jam_kerja * uang_lembur_per_jam)
-    endif
-
-    if masa_kerja = (< 5
-            tambahan = 0)
-    else if masa_kerja = (<= 10 then
-            tambahan = gaji_pokok * 0.05)
-    else masa_kerja = (>= 10 then 
-            tambahan = gaji_pokok * 0.10)
-    endif
-
-
-    output ("gaji_pokok")
-    output ("tambahan")
-    output ("uang_lembur")
-    output ("Gaji total yang diterima adalah:  Rp" + total_gaji)
-
-//end
-
-
-
+// End
